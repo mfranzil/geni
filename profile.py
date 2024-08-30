@@ -12,6 +12,8 @@ import geni.rspec.pg as rspec
 
 # Describe the parameter(s) this profile script can accept.
 portal.context.defineParameter("n", "Number of nodes", portal.ParameterType.INTEGER, 1) 
+portal.context.defineParameter("hw", "Hardware Type", portal.ParameterType.STRING, "d820")
+portal.context.defineParameter("os", "Operating System", portal.ParameterType.IMAGE, "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD")
 
 # Retrieve the values the user specifies during instantiation.
 params = portal.context.bindParameters()
@@ -29,10 +31,11 @@ portal.context.verifyParameters()
 for i in range(params.n):
     # Create a XenVM and add it to the RSpec.
     node = request.RawPC("node" + str(i))
+    node.hardware_type = params.hw
+    node.disk_image = params.os
     # node = request.XenVM("node_" + str(i))
     # node.cores = 4
     # node.ram = 4096
-    # node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD";
     # node.addService(rspec.Install(url="http://example.org/sample.tar.gz", path="/local"))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/setup.sh"))
 
