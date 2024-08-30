@@ -1,3 +1,13 @@
+"""
+A profile with a configurable number of VMs, each with 4 cores and 4GB of RAM, and a setup script that installs a public key for each VM and PostgreSQL.
+
+Instructions:
+1. Run the profile with the desired number of VMs.
+2. Upload the public keys for each VM in the keys/ directory. Call the keys node_0.pub, node_1.pub, etc.
+3. Make changes to the setup.sh script as needed.
+4. Run the profile.
+"""
+
 import geni.portal as portal
 import geni.rspec.pg as rspec
 import os
