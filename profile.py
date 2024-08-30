@@ -3,7 +3,7 @@ import geni.rspec.pg as rspec
 import os
 
 # Describe the parameter(s) this profile script can accept.
-portal.context.defineParameter("n", "Number of VMs", portal.ParameterType.INTEGER, 1)
+portal.context.defineParameter("n", "Number of VMs", portal.ParameterType.INTEGER, 2)
 
 # Retrieve the values the user specifies during instantiation.
 params = portal.context.bindParameters()
