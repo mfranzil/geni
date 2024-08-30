@@ -3,7 +3,6 @@ A profile with a configurable number of VMs, each with 4 cores and 4GB of RAM, a
 
 Instructions:
 1. Run the profile with the desired number of VMs.
-2. Upload the public keys for each VM in the keys/ directory. Call the keys node_0.pub, node_1.pub, etc.
 3. Make changes to the setup.sh script as needed.
 4. Run the profile.
 """
@@ -36,18 +35,6 @@ for i in range(params.n):
     # node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD";
     # node.addService(rspec.Install(url="http://example.org/sample.tar.gz", path="/local"))
     node.addService(rspec.Execute(shell="bash", command="/local/repository/setup.sh"))
-
-    # Fetch the hostname and match it to a local file that maps node_n to a public key
-    hostname = "node_" + str(i)
-    key_file_path = "/local/repository/keys/" + str(hostname) + ".pub"
-    
-    if os.path.exists(key_file_path):
-        with open(key_file_path, 'r') as key_file:
-            public_key = key_file.read().strip()
-            node.addService(rspec.Execute(shell="bash", command="echo " + public_key + " >> /home/ubuntu/.ssh/authorized_keys"))
-        
-        # Delete the key file after adding the public key
-        os.remove(key_file_path)
 
 # Print the RSpec to the enclosing page.
 portal.context.printRequestRSpec()

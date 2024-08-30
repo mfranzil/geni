@@ -13,4 +13,5 @@ sudo systemctl enable postgresql
 # Install psql client
 sudo apt-get install -y postgresql-client
 
-echo "PostgreSQL and psql client installed and started successfully."
+# Add PostgreSQL user
+sudo -u postgres createuser -s $USER
