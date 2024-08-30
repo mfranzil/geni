@@ -13,5 +13,11 @@ sudo systemctl enable postgresql
 # Install psql client
 sudo apt-get install -y postgresql-client
 
+sudo systemctl start postgresql
+
 # Add PostgreSQL user
-sudo -u postgres createuser -s $USER
+for user in /users/*; do
+    user=$(basename $user)
+    sudo -u postgres createuser -s $user
+    sudo -u postgres createdb $user
+done
