@@ -17,14 +17,14 @@ imageList = [
     ('urn:publicid:IDN+emulab.net+image+emulab-ops//FBSD123-64-STD', 'FreeBSD 12.3'),
     ('urn:publicid:IDN+emulab.net+image+emulab-ops//FBSD131-64-STD', 'FreeBSD 13.1')]
 
-pc.defineParameter("osImage", "Select OS image",
+portal.context.defineParameter("osImage", "Select OS image",
                    portal.ParameterType.IMAGE,
                    imageList[0], imageList,
                    longDescription="Most clusters have this set of images, " +
                    "pick your favorite one.")
 
 # Optional physical type for all nodes.
-pc.defineParameter("phystype",  "Optional physical node type",
+portal.context.defineParameter("phystype",  "Optional physical node type",
                    portal.ParameterType.NODETYPE, "d820",
                    longDescription="Pick a single physical node type (pc3000,d710,etc) " +
                    "instead of letting the resource mapper choose for you.")
